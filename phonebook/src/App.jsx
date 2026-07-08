@@ -1,5 +1,11 @@
 import { useState } from 'react'
 
+const Profile = (props) => {
+  return (
+    <p>{props.name}</p>
+  )
+}
+
 const App = () => {
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas', }
@@ -35,7 +41,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      {persons.map(person => <p>{person.name}</p>)}
+      {persons.map(person => <Profile key={person.name} name={person.name} />)}
     </div>
   )
 }
