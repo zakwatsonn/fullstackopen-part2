@@ -14,14 +14,15 @@ const Part = (props) => (
   </p>
 )
 
-const Total = (props) => <p>Number of exercises {props.total}</p>
+const Total = ({ total }) => <p>Number of exercises {total}</p>
 
-const Course = ({ course }) => {
+const Course = ({ course, total }) => {
   const initialValue = 0
   return (
     <div>
       <Header course={course.name} />
       <Content parts={course.parts} />
+      <Total total={total} />
     </div>
   )
 }
@@ -48,13 +49,15 @@ const App = () => {
       },
       {
         name: 'Mystery Part',
-        exercises: 3,
+        exercises: 6,
         id: 4,
       }
     ],
   }
 
-  return <Course course={course} />
+  const total = course.parts.reduce((accumulator, currentValue) => accumulator + currentValue.exercises, 0)
+
+  return <Course course={course} total={total} />
 }
 
 export default App
